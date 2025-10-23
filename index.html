@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <!-- Grid.js -->
+    <link
+      href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <!-- style sheet.ccs -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <title>SIMS HEALTH INDEX</title>
+  </head>
+  <body>
+    <!-- header: logo, tile, burger menu -->
+    <header class="app-header">
+      <div
+        class="logo-container"
+        tabindex="0"
+        role="button"
+        aria-label="Go to Home"
+      >
+        <img src="logo.svg" alt="Exxaro Logo" class="logo" />
+      </div>
+      <div class="header-title">ARNO MINE</div>
+      <menu class="burger-menu" id="burgerMenu">
+        <button
+          class="burger-btn"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="dropdownMenu"
+        >
+          <span class="burger-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </span>
+        </button>
+      </menu>
+    </header>
+    <!-- Slide-in dropdown menu + backdrop -->
+    <div id="dropdownBackdrop" class="dropdown-backdrop"></div>
+    <nav class="dropdown-menu" id="dropdownMenu" aria-hidden="true">
+      <ul>
+        <li class="menu-heading">Mine</li>
+        <li><a href="#" data-mine="Arno">Arno</a></li>
+        <li><a href="#" data-mine="Belfast">Belfast</a></li>
+        <li><a href="#" data-mine="Grootegeluk">Grootegeluk</a></li>
+        <li><a href="#" data-mine="Iyanda">Iyanda</a></li>
+        <li><a href="#" data-mine="Leeuwpan">Leeuwpan</a></li>
+        <li><a href="#" data-mine="Matla">Matla</a></li>
+        <li class="menu-heading">Operation</li>
+        <li><a href="#">Share URL</a></li>
+        <li><a href="#">Export CSV</a></li>
+        <li class="menu-heading">About</li>
+        <li>
+          <a
+            href="about.html#health-index-container"
+            data-about="health-index-container"
+            >SIMS Health Index</a
+          >
+        </li>
+        <li>
+          <a
+            href="about.html#condition-container"
+            data-about="condition-container"
+            >Condition</a
+          >
+        </li>
+        <li>
+          <a href="about.html#risk-container" data-about="risk-container"
+            >Risk</a
+          >
+        </li>
+        <li>
+          <a href="about.html#cost-container" data-about="cost-container"
+            >Cost</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- horizontal navigation bar: condition, risk, cost -->
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#" class="active" data-scroll="index1-container">Health</a>
+      <a href="#" data-scroll="chart1-container">Condition</a>
+      <a href="#" data-scroll="chart5-container">Risk</a>
+      <a href="#" data-scroll="chart9-container">Cost</a>
+    </nav>
+
+    <!-- health-index:  3 x chart.js and 1 x grid.js table  -->
+    <div class="health-index">
+      <div id="index1-container" class="chart responsive-chart">
+        <canvas id="index1"></canvas>
+        <h3>CHI: <span style="color: red">-17.61%</span></h3>
+        <p>Updated: 03 Dec 2024</p>
+      </div>
+      <div id="index2-container" class="chart responsive-chart">
+        <canvas id="index2"></canvas>
+        <h3>RHI: <span style="color: green">+1.22%</span></h3>
+        <p>Updated: 03 Dec 2024</p>
+      </div>
+      <div id="index3-container" class="chart responsive-chart">
+        <canvas id="index3"></canvas>
+        <h3>CPI: <span style="color: red">0.89</span></h3>
+        <p>Updated: 31 Dec 2024</p>
+      </div>
+      <div id="index4-container" class="chart responsive-chart">
+        <div class="inventory-table-container">
+          <div id="inventory-table"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- chart-gallery:  12 x chart.js  -->
+    <div class="chart-gallery">
+      <div class="chart responsive-chart" id="chart1-container">
+        <canvas id="chart1"></canvas>
+      </div>
+      <div class="chart responsive-chart">
+        <canvas id="chart2"></canvas>
+      </div>
+      <div class="chart responsive-chart">
+        <canvas id="chart3"></canvas>
+      </div>
+      <div class="chart responsive-chart">
+        <canvas id="chart4"></canvas>
+      </div>
+      <div class="chart responsive-chart" id="chart5-container">
+        <canvas id="chart5"></canvas>
+      </div>
+      <div class="chart responsive-chart">
+        <canvas id="chart6"></canvas>
+      </div>
+      <div class="chart responsive-chart">
+        <canvas id="chart7"></canvas>
+      </div>
+      <div class="chart responsive-chart">
+        <canvas id="chart8"></canvas>
+      </div>
+      <div class="chart responsive-chart" id="chart9-container">
+        <canvas id="chart9"></canvas>
+      </div>
+      <div class="chart responsive-chart">
+        <canvas id="chart10"></canvas>
+      </div>
+      <div class="chart responsive-chart">
+        <canvas id="chart11"></canvas>
+      </div>
+      <div class="chart responsive-chart">
+        <canvas id="chart12"></canvas>
+      </div>
+    </div>
+
+    <!-- Run all navigation.js scripts -->
+    <script src="navigation.js"></script>
+    <!-- Run all chart.js scripts -->
+    <script src="charts.js"></script>
+  </body>
+</html>

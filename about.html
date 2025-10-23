@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>SIMS HEALTH INDEX</title>
+  </head>
+  <body>
+    <!-- header: logo, tile, burger menu -->
+    <header class="app-header">
+      <div
+        class="logo-container"
+        tabindex="0"
+        role="button"
+        aria-label="Go to Home"
+      >
+        <img src="logo.svg" alt="Exxaro Logo" class="logo" />
+      </div>
+      <div class="header-title">ABOUT</div>
+      <menu class="burger-menu" id="burgerMenu">
+        <button
+          class="burger-btn"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="dropdownMenu"
+        >
+          <span class="burger-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </span>
+        </button>
+      </menu>
+    </header>
+    <!-- Slide-in dropdown menu + backdrop -->
+    <div id="dropdownBackdrop" class="dropdown-backdrop"></div>
+    <nav class="dropdown-menu" id="dropdownMenu" aria-hidden="true">
+      <ul>
+        <li class="menu-heading">Mine</li>
+        <li><a href="index.html" data-mine="Arno">Arno</a></li>
+        <li><a href="index.html" data-mine="Belfast">Belfast</a></li>
+        <li><a href="index.html" data-mine="Grootegeluk">Grootegeluk</a></li>
+        <li><a href="index.html" data-mine="Iyanda">Iyanda</a></li>
+        <li><a href="index.html" data-mine="Leeuwpan">Leeuwpan</a></li>
+        <li><a href="index.html" data-mine="Matla">Matla</a></li>
+        <li class="menu-heading">Operation</li>
+        <li><a href="#">Share URL</a></li>
+        <li><a href="#">Export CSV</a></li>
+        <li class="menu-heading">About</li>
+        <li>
+          <a href="#health-index-container" data-about="health-index-container"
+            >SIMS Health Index</a
+          >
+        </li>
+        <li>
+          <a href="#condition-container" data-about="condition-container"
+            >Condition</a
+          >
+        </li>
+        <li><a href="#risk-container" data-about="risk-container">Risk</a></li>
+        <li><a href="#cost-container" data-about="cost-container">Cost</a></li>
+      </ul>
+    </nav>
+
+    <!-- about-section: 4 x containers  -->
+    <div class="about-section">
+      <div class="about" id="health-index-container">
+        <h2>SIMS Health Index</h2>
+        <br />
+        <p>
+          The SIMS Health Index is a powerful asset health monitoring tool that
+          delivers clear, actionable insights into the condition of structural
+          assets across your operation. By leveraging your existing operational
+          data, it enables instant tracking, visualization, and analysis of
+          asset condition, risk exposure, and maintenance costs all in one
+          intuitive dashboard.
+        </p>
+        <br />
+        <p>
+          Developed in alignment with Anglo American’s
+          <em>SIMM Guidelines for Plant Structures and Conveyances</em>, the
+          SIMS Health Index brings a strategic management lens to structural
+          integrity. It empowers decision-makers to balance risk, cost, and
+          performance with confidence.
+        </p>
+        <br />
+        <p>
+          You already have the data. You already have the team. SIMS Health
+          Index provides clarity, clarity that drives decisions, not just
+          reports. It is more than dashboard, it’s a strategic decision support
+          tool that enhances planning, improves outcomes, and strengthens
+          performance. It doesn’t replace your current processes, it amplifies
+          them. It’s familiar, easy to use, and designed to work with the
+          systems and data you already rely on.
+        </p>
+      </div>
+      <div class="about" id="condition-container">
+        <h2>Condition</h2>
+        <br />
+        <p>
+          The fundamental purpose of plant structure and conveyance condition
+          inspections is to confirm that the plant remains safe for productive
+          use. Condition categories follow Anglo American’s SIMM Guidelines,
+          while the extent rating indicates how common a particular defect is on
+          the inspected item or area.
+        </p>
+        <br />
+
+        <table class="table" border="1">
+          <caption>
+            <strong>SIMS Condition Categories</strong>
+          </caption>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Original Strength [%]</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0</td>
+              <td>
+                The plant structures are in excellent condition, with no
+                deterioration evident. Safe use of the plant structures is
+                assured.
+              </td>
+              <td>100</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>
+                The plant structures have slight evidence of surface
+                deterioration, but to an extent that there is no reduction in
+                strength. Safe use of the plant structures is assured.
+              </td>
+              <td>100</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                The plant structures have some deterioration, to an extent that
+                there is slight reduction in strength. Safe use of the plant
+                structures is assured.
+              </td>
+              <td>95 to 100</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>
+                The plant structures show deterioration, to an extent that there
+                is some reduction in strength. There is some compromise to safe
+                use of the plant structures. Repair must receive attention in
+                maintenance scheduling
+              </td>
+              <td>75 to 95</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>
+                The plant structures show severe deterioration, to an extent
+                that there is a major reduction in strength. Safe use of the
+                plant is severely compromised. Urgent attention must be given to
+                repair.
+              </td>
+              <td>50 to 75</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>
+                The plant structures show severe deterioration, to an extent
+                that they have little useful residual strength. Safe use of the
+                plant is impossible. Urgent attention must be given to repair.
+              </td>
+              <td>&lt50</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <table class="table" border="1">
+          <caption>
+            <strong>Condition Extent Ratings</strong>
+          </caption>
+          <thead>
+            <tr>
+              <th>Extent</th>
+              <th>Description</th>
+              <th>Coverage [%]</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Defect is local. Isolated occurrence.</td>
+              <td>&lt10</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                Defect is more than local. Occurs over parts of the item or
+                area.
+              </td>
+              <td>10 to 25</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Defect is frequent over parts of the item or area.</td>
+              <td>25 to 50</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>
+                Defect is general. Extensive occurrence over an area or item.
+              </td>
+              <td>&gt50</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="about" id="risk-container">
+        <h2>Risk</h2>
+        <br />
+        <p>
+          Remedial action priority levels and defect criticality levels are key
+          elements in managing infrastructure asset risk. They support the
+          assessment of defect severity and the urgency of response, based on
+          potential impacts on safety, operations, and compliance. Priority
+          levels are informed by an extension of Anglo American’s SIMM
+          Guidelines and criticality levels are composed of factors such as
+          safety implications, repair costs, and potential production losses
+          associated with asset failure, where a level A has a higher threshold
+          (more critcal) and a level D a lower threshold (less critical).
+        </p>
+        <br />
+        <table class="table" border="1">
+          <caption>
+            <strong>Levels of Priority</strong>
+          </caption>
+          <thead>
+            <tr>
+              <th>Priority</th>
+              <th>Category</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>X</td>
+              <td>High / Urgent</td>
+              <td>
+                Repair or replacement of the structural members must be
+                completed before use of the structure. <br />
+                Where a structure or portion of a structure cannot be used for
+                its intended purpose in its current condition, but may not be
+                required to be used for some time, it must be recorded as
+                Priority X. This would typically apply to maintenance structures
+                such as crawl beams.
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>High / Urgent</td>
+              <td>
+                Repair or replacement of the structural members, or other
+                recommended work, requires urgent, immediate attention.
+                <br />All members in condition category 5, any primary
+                structural members in condition category 4, and any other
+                members where the deterioration leads to a risk to personnel
+                safety must be recorded as Priority 1.
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Medium / Routine</td>
+              <td>
+                Repair or replacement of the structural members, or other
+                recommended work, should be scheduled as soon as possible, but
+                not later than one year from date of this report. <br />
+                All secondary or tertiary members in condition category 4, and
+                any other structural members requiring repair or replacement in
+                the short term must be recorded as Priority 2.
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Low / Deferred</td>
+              <td>
+                Repair of the structural members, or other recommended work,
+                will be required within the next three years.
+              </td>
+            </tr>
+
+            <tr>
+              <td>M</td>
+              <td>Low / Deferred</td>
+              <td>
+                Monitoring - The condition of the structural member does not
+                pose any foreseeable risk to the structure’s integrity. However,
+                a monitoring programme must be put in place to ensure the
+                condition does not further deteriorate over time.
+              </td>
+            </tr>
+            <tr>
+              <td>RF</td>
+              <td>Low / Deferred</td>
+              <td>
+                Run to Failure - Failure of a structure will not result in
+                production loss or pose a safety risk and where the cost of
+                ongoing maintenance exceeds the cost of replacement (including
+                any associated production downtime), the structure may be
+                allowed to run to failure. This approach is typically applied to
+                dead load-bearing structures such as pump bases and pipe racks.
+              </td>
+            </tr>
+            <tr>
+              <td>RR</td>
+              <td>Medium / Routine</td>
+              <td>
+                Run to Replacement – When the cost of maintenance or
+                rehabilitation, including associated production losses, exceeds
+                the cost of replacement and its related downtime, the structure
+                should be scheduled for replacement. This approach requires a
+                strict monitoring regime and clearly defined replacement indices
+                to trigger timely planning for replacement and shutdowns. It is
+                typically applied to high-priority production conveyors and
+                equipment, where modular components can be replaced during
+                shorter shutdown periods with minimal impact on production.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <table class="table" border="1">
+          <caption>
+            <strong>Criticality Levels</strong>
+          </caption>
+          <thead>
+            <tr>
+              <th>Criticality Level</th>
+              <th>Threshold Limit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A</td>
+              <td>&gt25</td>
+            </tr>
+            <tr>
+              <td>B</td>
+              <td>25</td>
+            </tr>
+            <tr>
+              <td>C</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <td>D</td>
+              <td>5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="about" id="cost-container">
+        <h2>Cost</h2>
+        <br />
+        <p>
+          SIMM audits generate detailed remedial action lists that serve as
+          critical inputs into a mine’s structural maintenance and
+          rehabilitation programme. These programmes typically include
+          initiatives such as steel rehabilitation, corrosion protection, and
+          concrete restoration, each comprising multiple projects with varying
+          scopes and priorities.
+        </p>
+        <br />
+        <p>
+          The cost requirements for these projects are often significant and
+          frequently exceed the available maintenance budget. As a result,
+          prioritisation becomes essential. The SIMS Health Index plays a key
+          role in this process by tracking actual investments made in structural
+          maintenance and quantifying their impact on asset condition and risk
+          exposure.
+        </p>
+        <br />
+        <p>
+          The ultimate objective is to invest strategically, allocating enough
+          resources to reduce and stabilise structural risk below defined
+          thresholds or KPIs, while observing the convergence of overall
+          structural condition toward a manageable and sustainable state. This
+          approach ensures that limited budgets are directed where they deliver
+          the greatest operational and safety value.
+        </p>
+      </div>
+    </div>
+    <!-- Run all navigation.js scripts -->
+    <script src="navigation.js"></script>
+  </body>
+</html>

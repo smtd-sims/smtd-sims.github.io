@@ -1,0 +1,811 @@
+/* ============================================================
+   Exxaro Brand Colour Palette
+   ------------------------------------------------------------
+   Confire #A5CF4C | White #FFFFFF | Shark #303031
+   ------------------------------------------------------------
+   Hex      | RGBA 
+   ---------+--------------------------
+   #303031	| rgba(48, 48, 49, 1)     |
+   #46493F	| rgba(70, 73, 63, 1)     |
+   #5C6250	| rgba(92, 98, 80, 1)     |
+   #727B62	| rgba(114, 123, 98, 1)   |
+   #889473	| rgba(136, 148, 115, 1)  |
+   #9EAD85	| rgba(158, 173, 133, 1)  |
+   #B4C697	| rgba(180, 198, 151, 1)  |
+   #A5CF4C	| rgba(165, 207, 76, 1)   |
+   ---------+--------------------------
+   Hex      | RGBA 
+   ---------+--------------------------
+   #303031	| rgba(48, 48, 49, 1)     |      
+   #50573A	| rgba(80, 87, 58, 1)     |
+   #6F7E44	| rgba(111, 126, 68, 1 )  |  
+   #8FA54D	| rgba(143, 165, 77, 1 )  |
+   #AFCC57	| rgba(175, 204, 87, 1)   |
+   #A5CF4C	| rgba(165, 207, 76, 1)   |
+   ---------+--------------------------
+   Hex      | RGBA 
+   ---------+--------------------------
+   #303031	| rgba(48, 48, 49, 1)     |
+   #646E37	| rgba(100, 110, 55, 1)   |
+   #98AC5E	| rgba(152, 172, 94, 1)   |
+   #A5CF4C	| rgba(165, 207, 76, 1)   |
+   ============================================================ */
+
+/* ============================================================
+   1. CSS Reset & Base Styles (Mobile First)
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #fafafa;
+  color: #303031; /* Shark */
+}
+
+/* ============================================================
+   2. Header Styles (Sticky Mobile Header)
+   ============================================================ */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: #303031;
+  position: sticky;
+  top: 0;
+  height: 56px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+}
+.logo-container:focus {
+  box-shadow: 0 0 0 3px #a5cf4c;
+}
+.logo {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #303031;
+  border: 2px solid #a5cf4c;
+}
+.header-title {
+  flex: 1 1 auto;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  color: #a5cf4c;
+}
+.burger-menu {
+  position: relative;
+  background: none;
+  border: none;
+}
+.burger-btn {
+  background: none;
+  border: none;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 0;
+}
+.burger-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+  background: transparent;
+}
+.burger-icon .bar {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 3px;
+  background: #a5cf4c;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.burger-icon .bar:nth-child(1) {
+  top: 4px;
+}
+.burger-icon .bar:nth-child(2) {
+  top: 10.5px;
+}
+.burger-icon .bar:nth-child(3) {
+  top: 17px;
+}
+.burger-icon.open .bar:nth-child(1) {
+  top: 11px;
+  transform: rotate(45deg);
+}
+.burger-icon.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.burger-icon.open .bar:nth-child(3) {
+  top: 11px;
+  transform: rotate(-45deg);
+}
+.burger-btn:focus,
+.burger-btn:active {
+  outline: 0px solid #a5cf4c;
+  outline-offset: 2px;
+  background: none !important;
+  border-radius: 0 !important;
+}
+
+/* ============================================================
+   3. Dropdown Menu & Backdrop (Mobile Navigation)
+   ============================================================ */
+.dropdown-backdrop {
+  display: none;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 56px);
+  background: rgba(30, 40, 60, 0.35);
+  z-index: 1099;
+  transition: opacity 0.25s;
+  opacity: 0;
+  pointer-events: none;
+}
+.dropdown-backdrop.open {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+.dropdown-menu {
+  display: none;
+  position: fixed;
+  top: 56px;
+  right: 0;
+  width: 75vw;
+  max-width: 420px;
+  height: calc(100vh - 56px);
+  background: #fff;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  box-shadow: -4px 0 32px 0 rgba(36, 40, 47, 0.17);
+  z-index: 1100;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  overflow-y: auto;
+  transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+    filter 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateX(100%);
+  opacity: 0;
+  filter: blur(6px) brightness(0.96) grayscale(0.08);
+}
+.dropdown-menu.open {
+  display: block;
+  transform: translateX(0);
+  opacity: 1;
+  box-shadow: -8px 0 40px 0 rgba(36, 40, 47, 0.22);
+  filter: blur(0) brightness(1) grayscale(0);
+}
+@media (min-width: 600px) {
+  .dropdown-menu {
+    width: 420px;
+    max-width: 420px;
+  }
+  .dropdown-backdrop {
+    height: calc(100vh - 56px);
+  }
+}
+.dropdown-menu ul {
+  list-style: none;
+  padding-bottom: 2rem;
+}
+.dropdown-menu li {
+  width: 100%;
+}
+.menu-heading {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #a5cf4c;
+  padding: 0.35rem 1.2rem 0.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #f6fce9;
+  pointer-events: none;
+}
+.dropdown-menu li a {
+  display: block;
+  padding: 0.55rem 1.2rem;
+  color: #303031;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 500;
+}
+.dropdown-menu li a:hover,
+.dropdown-menu li a:focus {
+  background: #a5cf4c;
+  color: #fff;
+}
+
+/* ============================================================
+   4. Main Navigation Bar (Horizontal Tabs)
+   ============================================================ */
+.main-nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.2rem;
+  background: #e3e9f7;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-bottom: 1px solid #d2dbe8;
+  position: sticky;
+  top: 56px;
+  z-index: 900;
+  overflow-x: auto;
+}
+.main-nav a {
+  text-decoration: none;
+  color: #303031;
+  font-weight: 600;
+  padding: 0.5rem 0.8rem;
+  border-radius: 12px;
+  transition: background 0.2s, color 0.2s;
+  background: transparent;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+}
+.main-nav a.active,
+.main-nav a:focus,
+.main-nav a:hover {
+  background: #a5cf4c;
+  color: #fff;
+}
+
+/* ============================================================
+   5. Chart Gallery & Chart Cards
+   ------------------------------------------------------------
+   Responsive, Adaptive - Mobile First
+   ============================================================ */
+.chart-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 0.5rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Enable vertical scroll snap on all screens, but should only be active for mobile in @media below */
+  /* scroll-snap-type: y mandatory; */
+  /* -webkit-overflow-scrolling: touch; */
+  /* Condition, Risk, Cost Scrolling - Optional*/
+  scroll-behavior: smooth;
+}
+
+.chart,
+.responsive-chart {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(36, 40, 47, 0.06);
+  padding: 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  /* For mobile, use aspect-ratio to keep square, but set min/max for pleasant fit */
+  aspect-ratio: 1/1;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100vw;
+  max-height: 100vw;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+/* Responsive chart adapts to screen width and uses up most available space */
+.responsive-chart {
+  width: 100%;
+  max-width: 95vw;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 1/1;
+  max-height: 95vw;
+}
+
+/* Chart canvas adapts responsively */
+.chart canvas,
+.responsive-chart canvas {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: 1/1;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Small mobile screens */
+@media (max-width: 700px) and (orientation: portrait) {
+  .chart-gallery {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.5rem auto; /*remove if no scroll snapping*/
+    padding: 0rem 0.1rem; /*reset to 0.5rem 0.1rem if no scroll snapping*/
+    max-width: 100vw;
+    width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh; /*reset to auto no scroll snapping*/
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .chart,
+  .responsive-chart {
+    width: 98vw;
+    max-width: 98vw;
+    min-width: 0;
+    min-height: calc((100vh - 56px - 56px - 0.5rem - 1rem - 0.5rem) / 2);
+    aspect-ratio: 1/1;
+    /* Calculate available viewport, subtract header/nav/padding/gap, divide by 2 for two charts per screen */
+    max-height: calc((100vh - 56px - 56px - 0.5rem - 1rem - 0.5rem) / 2);
+    padding: 0.25rem 0.15rem;
+    margin: 0 auto;
+    scroll-snap-align: start;
+    /*scroll-snap-stop: always;*/
+  }
+  .chart canvas,
+  .responsive-chart canvas {
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 1/1;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  /* #index4-container .index-table {
+    font-size: 0.95rem;
+  } */
+}
+
+/*Small Mobile Screen Landscape: 2 charts per row using CSS Grid*/
+@media (max-height: 700px) and (orientation: landscape) {
+  .chart-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: stretch;
+    /* Dynamically account for header and nav height (56px each) */
+    height: calc(100vh - 56px - 56px);
+    max-width: 100vw;
+    overflow-y: auto; /* enable vertical scrolling */
+    overflow-x: hidden;
+    margin: 0.5rem auto; /*remove if no scroll snapping*/
+    padding: 0rem 0.5rem; /*reset to 0.5rem if no scroll snapping*/
+
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .chart,
+  .responsive-chart {
+    /* Each chart takes up available space in its grid cell */
+    min-width: 0;
+    min-height: calc(100vh - 56px - 56px - 1.25rem);
+    max-width: 100%;
+    max-height: calc(100vh - 56px - 56px - 1.25rem);
+    aspect-ratio: unset;
+    box-sizing: border-box;
+    padding: 0.25rem 0.15rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    scroll-snap-align: start;
+  }
+  /* Ensure canvas fills chart */
+  .chart canvas,
+  .responsive-chart canvas {
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: unset;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0;
+    box-sizing: border-box;
+  }
+}
+
+/* Tablet screens, portrait */
+/* @media (min-width: 700px) and (orientation: portrait) {
+} */
+
+/* Large Screens: Magazine-style Desktop Grid Layout*/
+@media (min-width: 1100px) {
+  /* General Setting for All */
+  .chart-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    /* grid-template-rows: repeat(auto-fill, minmax(300px, 1fr)); */
+    gap: 2rem;
+    width: 100%;
+    max-width: 98vw;
+    margin: 0 auto;
+    padding: 2rem 2vw;
+    /* Enable vertical scrolling for overflow charts */
+    max-height: calc(3 * (100vh - 2rem - 2rem - 2rem - 2rem));
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  /* Health Index Magazine Grid Layout */
+  .health-index {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      "index1 index2 index3"
+      "table  table  table";
+    gap: 2rem;
+    width: 100%;
+    max-width: 98vw;
+    margin: 0 auto;
+    padding: 2rem 2vw 0rem 2vw;
+  }
+  .health-index > #index1-container {
+    grid-area: index1;
+  }
+  .health-index > #index2-container {
+    grid-area: index2;
+  }
+  .health-index > #index3-container {
+    grid-area: index3;
+  }
+  .health-index > #index4-container {
+    grid-area: table;
+  }
+  /* Responsive Table in index4-container */
+  #index4-container {
+    width: 100%;
+    max-width: 100vw;
+    max-height: calc(0.8 * 100vh);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    /* Ensure no extra padding interferes */
+    padding: 2rem;
+    margin: 0;
+  }
+
+  /* Ensure index1/2/3 containers fit chart, h3, and p */
+  #index1-container,
+  #index2-container,
+  #index3-container {
+    min-height: 500px;
+    padding-bottom: 4rem;
+  }
+  #index1-container p,
+  #index2-container p,
+  #index3-container p {
+    font-size: 0.75rem;
+  }
+
+  /* Hide legend for <canvas id="index3"></canvas> only */
+  #index3-container .chartjs-legend {
+    display: none !important;
+  }
+
+  /* Grid.js wide table and sticky header/column */
+  .inventory-table-container {
+    width: 100%;
+    min-width: 1100px;
+    max-width: 100vw;
+    overflow-x: auto;
+  }
+
+  .inventory-table-container .gridjs-container {
+    min-height: 60px;
+    max-height: 640px;
+    overflow-y: auto;
+  }
+
+  .inventory-table-container .gridjs-table {
+    width: 100%;
+    min-width: 3000px;
+    table-layout: fixed;
+  }
+  .inventory-table-container .gridjs-thead th {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 2;
+  }
+  .inventory-table-container .gridjs-th:first-child,
+  .inventory-table-container .gridjs-td:first-child {
+    position: sticky;
+    left: 0;
+    background: #fff;
+    z-index: 3;
+    box-shadow: 2px 0 2px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  /*  Charts 1 to 12 
+      Group charts in sets of 4 for magazine layout 
+      Chart 1 in each group of 4 */
+  .chart:nth-child(4n + 1),
+  .responsive-chart:nth-child(4n + 1) {
+    grid-column: 1 / span 2;
+    grid-row: auto / span 2;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+  /* Chart 2 in each group */
+  .chart:nth-child(4n + 2),
+  .responsive-chart:nth-child(4n + 2) {
+    grid-column: 3;
+    grid-row: auto / span 1;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+  /* Chart 3 in each group */
+  .chart:nth-child(4n + 3),
+  .responsive-chart:nth-child(4n + 3) {
+    grid-column: 4;
+    grid-row: auto / span 1;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+  /* Chart 4 in each group */
+  .chart:nth-child(4n + 4),
+  .responsive-chart:nth-child(4n + 4) {
+    grid-column: 3 / span 2;
+    grid-row: auto auto / span 1;
+    align-self: end;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+  /* Responsive chart sizing */
+  .chart,
+  .responsive-chart {
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(36, 40, 47, 0.06);
+  }
+  .chart canvas,
+  .responsive-chart canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0;
+    box-sizing: border-box;
+  }
+}
+/* ============================================================
+   6. About Section Styles
+   ============================================================ */
+.about-section {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+}
+
+.about-section .about {
+  scroll-margin-top: 80px;
+}
+
+.about {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(36, 40, 47, 0.06);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 150px;
+  font-size: 1.1rem;
+  color: #303031;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s, border-radius 0.2s;
+}
+
+.about h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #a5cf4c;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  text-align: left;
+  width: 100%;
+}
+
+.about p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #46493f;
+}
+
+.about table.table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  background: #f6fce9;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 1rem;
+}
+
+.about table.table caption {
+  caption-side: top;
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: #303031;
+  background: #f6fce9;
+  padding: 0.5rem 0.25rem;
+  text-align: left;
+}
+
+.about table.table th,
+.about table.table td {
+  padding: 0.7rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #e3e9f7;
+}
+
+.about table.table th {
+  background: #e3e9f7;
+  color: #303031;
+  font-weight: 600;
+}
+
+.about table.table tr:last-child td {
+  border-bottom: none;
+}
+
+.about em {
+  color: #889473;
+  font-style: italic;
+}
+
+@media (min-width: 1100px) {
+  .about-section {
+    max-width: 900px;
+    padding: 2rem 2vw;
+    gap: 2.5rem;
+  }
+  .about {
+    max-width: 900px;
+    padding: 2.5rem 2rem;
+    font-size: 1.15rem;
+  }
+  .about h2 {
+    font-size: 1.7rem;
+  }
+}
+
+/* Make tables scrollable on small screens */
+@media (max-width: 600px) {
+  .about table.table {
+    font-size: 0.98rem;
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   7. Utility Classes & Accessibility
+   ============================================================ */
+.hidden {
+  display: none !important;
+}
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   8. Button Styles
+   ============================================================ */
+button,
+.burger-menu {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #3f51b5;
+  padding: 0.5rem;
+  border-radius: 0;
+}
+button:focus,
+.burger-menu:focus {
+  outline: 2px solid #3f51b5;
+  outline-offset: 2px;
+  border-radius: 0;
+}
+
+/* ============================================================
+   9. Keyframes (Animations)
+   ============================================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes menuSlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+    filter: blur(6px) brightness(0.96) grayscale(0.08);
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0) brightness(1) grayscale(0);
+  }
+}
+
+/* ============================================================
+   END OF STYLE SHEET
+   ============================================================ */
