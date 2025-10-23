@@ -1,1 +1,0 @@
-# smtd-sims.github.io
