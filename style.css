@@ -282,8 +282,9 @@ body {
 /* ============================================================
    5. Chart Gallery & Chart Cards
    ------------------------------------------------------------
-   Responsive, Adaptive - Mobile First
+   Default Responsive, Adaptive - Mobile First
    ============================================================ */
+
 .chart-gallery {
   display: flex;
   flex-direction: column;
@@ -292,14 +293,10 @@ body {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+
   max-height: none;
   overflow-y: auto;
   overflow-x: hidden;
-  /* Enable vertical scroll snap on all screens, but should only be active for mobile in @media below */
-  /* scroll-snap-type: y mandatory; */
-  /* -webkit-overflow-scrolling: touch; */
-  /* Condition, Risk, Cost Scrolling - Optional*/
-  scroll-behavior: smooth;
 }
 
 .chart,
@@ -346,67 +343,384 @@ body {
   box-sizing: border-box;
 }
 
-/* Small mobile screens */
+/* ------------------------------------------------------------------------ */
+/* Small Mobile Screen Portraite: 2 x 1 */
+/* ------------------------------------------------------------------------ */
 @media (max-width: 700px) and (orientation: portrait) {
-  .chart-gallery {
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 0.5rem auto; /*remove if no scroll snapping*/
-    padding: 0rem 0.1rem; /*reset to 0.5rem 0.1rem if no scroll snapping*/
-    max-width: 100vw;
-    width: 100vw;
+  /* Health Index */
+  .health-index {
+    /* Set grid*/
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, calc(0.5 * (100vh - 56px - 56px - 3rem)));
+    gap: 1rem;
+    width: 100%;
+    max-width: 98vw;
+    margin: 0 auto;
+    padding: 1rem 2vw;
+
+    /* Enable vertical scrolling for overflow charts */
     overflow-y: auto;
     overflow-x: hidden;
-    height: 100vh; /*reset to auto no scroll snapping*/
-    scroll-snap-type: y mandatory;
-    -webkit-overflow-scrolling: touch;
+
+    /* Set grid layout */
+    grid-template-areas:
+      "index1"
+      "index2"
+      "index3"
+      "table"
+      "table";
   }
+
+  /* Setup grid layout */
+  .health-index > #index1-container {
+    grid-area: index1;
+  }
+  .health-index > #index2-container {
+    grid-area: index2;
+  }
+  .health-index > #index3-container {
+    grid-area: index3;
+  }
+  .health-index > #index4-container {
+    grid-area: table;
+  }
+
+  /* Set health-index container sizes */
+  /* Ensure index1/2/3 containers fit chart, h3, and p */
+  #index1-container,
+  #index2-container,
+  #index3-container {
+    min-height: 100px;
+    max-height: 100%;
+    padding-bottom: 2rem;
+    align-items: start;
+  }
+  #index1-container h3,
+  #index2-container h3,
+  #index3-container h3 {
+    font-size: 0.75rem;
+  }
+  #index1-container p,
+  #index2-container p,
+  #index3-container p {
+    font-size: 0.75rem;
+  }
+
+  /* Set health-index container 4 size */
+  #index4-container {
+    width: 100%;
+    max-width: 100vw;
+    min-height: 200px;
+    max-height: calc(100vh - 56px - 56px - 2rem);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    /* Ensure no extra padding interferes */
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  /* Grid.js wide table and sticky header/column */
+  .inventory-table-container {
+    overflow-x: auto;
+  }
+
+  .inventory-table-container .gridjs-container {
+    overflow-y: auto; /* Not sure if this makes a diffrence */
+  }
+
+  .inventory-table-container .gridjs-table {
+    min-width: 2500px;
+    /* table-layout: fixed; */
+  }
+
+  .inventory-table-container .gridjs-th:first-child,
+  .inventory-table-container .gridjs-td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    /* box-shadow: 2px 0 2px -2px rgba(0, 0, 0, 0.08); */
+  }
+
+  /* Set gridjs-search text size */
+  .inventory-table-container .gridjs-search .gridjs-input {
+    font-size: 0.75rem;
+  }
+
+  /* Set gridjs-th text size */
+  .inventory-table-container .gridjs-th {
+    font-size: 0.75rem;
+  }
+  /* Set gridjs-th text size */
+  .inventory-table-container .gridjs-td {
+    font-size: 0.75rem;
+  }
+
+  /* Set pagination "Showing Results" summary font size */
+  .inventory-table-container .gridjs-pagination .gridjs-summary {
+    font-size: 0.75rem;
+  }
+
+  /* Set font size for pagination buttons (Previous / Next) and page buttons */
+  .inventory-table-container .gridjs-pagination .gridjs-pages button {
+    font-size: 0.75rem;
+  }
+
+  /* Set Chart Gallery */
+  .chart-gallery {
+    /* Set grid*/
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(12, calc(0.5 * (100vh - 56px - 56px - 3rem)));
+    gap: 1rem;
+    width: 100%;
+    max-width: 98vw;
+    margin: 0 auto;
+    padding: 1rem 2vw;
+
+    /* Enable vertical scrolling for overflow charts */
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* Set grid layout */
+    grid-template-areas:
+      "chart1"
+      "chart2"
+      "chart3"
+      "chart4"
+      "chart5"
+      "chart6"
+      "chart7"
+      "chart8"
+      "chart9"
+      "chart10"
+      "chart11"
+      "chart12";
+  }
+
+  /* Setup grid layout */
+  .chart-gallery > .chart:nth-child(1) {
+    grid-area: chart1;
+  }
+  .chart-gallery > .chart:nth-child(2) {
+    grid-area: chart2;
+  }
+  .chart-gallery > .chart:nth-child(3) {
+    grid-area: chart3;
+  }
+  .chart-gallery > .chart:nth-child(4) {
+    grid-area: chart4;
+  }
+  .chart-gallery > .chart:nth-child(5) {
+    grid-area: chart5;
+  }
+  .chart-gallery > .chart:nth-child(6) {
+    grid-area: chart6;
+  }
+  .chart-gallery > .chart:nth-child(7) {
+    grid-area: chart7;
+  }
+  .chart-gallery > .chart:nth-child(8) {
+    grid-area: chart8;
+  }
+  .chart-gallery > .chart:nth-child(9) {
+    grid-area: chart9;
+  }
+  .chart-gallery > .chart:nth-child(10) {
+    grid-area: chart10;
+  }
+  .chart-gallery > .chart:nth-child(11) {
+    grid-area: chart11;
+  }
+  .chart-gallery > .chart:nth-child(12) {
+    grid-area: chart12;
+  }
+
   .chart,
   .responsive-chart {
-    width: 98vw;
-    max-width: 98vw;
     min-width: 0;
-    min-height: calc((100vh - 56px - 56px - 0.5rem - 1rem - 0.5rem) / 2);
-    aspect-ratio: 1/1;
-    /* Calculate available viewport, subtract header/nav/padding/gap, divide by 2 for two charts per screen */
-    max-height: calc((100vh - 56px - 56px - 0.5rem - 1rem - 0.5rem) / 2);
-    padding: 0.25rem 0.15rem;
-    margin: 0 auto;
-    scroll-snap-align: start;
-    /*scroll-snap-stop: always;*/
+    min-height: 0; /* allow shrinking in flex/grid contexts */
+    height: 100%; /* fill the grid row height assigned by grid-auto-rows */
+    box-sizing: border-box;
+    padding: 0.5rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(36, 40, 47, 0.06);
   }
+
+  .responsive-chart {
+    aspect-ratio: unset;
+    width: 100%;
+    max-width: 95vw;
+    min-height: var(--chart-min-row);
+    /* cap by viewport fraction and by available width for sensible scaling */
+    max-height: min(calc(var(--chart-max-viewport-ratio) * 100vh), 95vw);
+  }
+
   .chart canvas,
   .responsive-chart canvas {
     width: 100% !important;
     height: 100% !important;
-    aspect-ratio: 1/1;
-    max-width: 100%;
-    max-height: 100%;
+    display: block;
+    margin: 0;
+    box-sizing: border-box;
   }
-
-  /* #index4-container .index-table {
-    font-size: 0.95rem;
-  } */
 }
 
-/*Small Mobile Screen Landscape: 2 charts per row using CSS Grid*/
+/* ------------------------------------------------------------------------ */
+/* Small Mobile Screen Landscape: 1 x 2 */
+/* ------------------------------------------------------------------------ */
 @media (max-height: 700px) and (orientation: landscape) {
-  .chart-gallery {
+  /* Health Index */
+  .health-index {
+    /* Set stacking order */ /* Dont think this is working */
+    position: relative;
+    z-index: 3;
+    /* Set grid*/
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-width: 98vw;
+    margin: 0 auto;
+    padding: 1rem 2vw;
+
+    /* Enable vertical scrolling for overflow charts */
+    max-height: calc(3 * (100vh - 2rem - 2rem - 1.5rem - 1.5rem));
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* Set grid layout */
+    grid-template-areas:
+      "index1 index1"
+      "index2 index3"
+      "table  table";
+  }
+
+  /* Setup grid layout */
+  .health-index > #index1-container {
+    grid-area: index1;
+  }
+  .health-index > #index2-container {
+    grid-area: index2;
+  }
+  .health-index > #index3-container {
+    grid-area: index3;
+  }
+  .health-index > #index4-container {
+    grid-area: table;
+  }
+
+  /* Set health-index container sizes */
+  /* Ensure index1/2/3 containers fit chart, h3, and p */
+  #index1-container,
+  #index2-container,
+  #index3-container {
+    min-height: 200px;
+    max-height: 100%;
+    padding-bottom: 2rem;
+    align-items: start;
+  }
+  #index1-container h3,
+  #index2-container h3,
+  #index3-container h3 {
+    font-size: 0.75rem;
+  }
+  #index1-container p,
+  #index2-container p,
+  #index3-container p {
+    font-size: 0.75rem;
+  }
+
+  /* Set health-index container 4 size */
+  #index4-container {
+    width: 100%;
+    max-width: 100vw;
+    min-height: 200px;
+    max-height: calc(100vh - 2rem - 2rem - 1.5rem - 1.5rem);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    /* Ensure no extra padding interferes */
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  /* Grid.js wide table and sticky header/column */
+  .inventory-table-container {
+    overflow-x: auto;
+  }
+
+  .inventory-table-container .gridjs-container {
+    overflow-y: auto; /* Not sure if this makes a diffrence */
+  }
+
+  .inventory-table-container .gridjs-table {
+    min-width: 2500px;
+    /* table-layout: fixed; */
+  }
+
+  .inventory-table-container .gridjs-th:first-child,
+  .inventory-table-container .gridjs-td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    /* box-shadow: 2px 0 2px -2px rgba(0, 0, 0, 0.08); */
+  }
+
+  /* Set gridjs-search text size */
+  .inventory-table-container .gridjs-search .gridjs-input {
+    font-size: 0.75rem;
+  }
+
+  /* Set gridjs-th text size */
+  .inventory-table-container .gridjs-th {
+    font-size: 0.75rem;
+  }
+  /* Set gridjs-th text size */
+  .inventory-table-container .gridjs-td {
+    font-size: 0.75rem;
+  }
+
+  /* Set pagination "Showing Results" summary font size */
+  .inventory-table-container .gridjs-pagination .gridjs-summary {
+    font-size: 0.75rem;
+  }
+
+  /* Set font size for pagination buttons (Previous / Next) and page buttons */
+  .inventory-table-container .gridjs-pagination .gridjs-pages button {
+    font-size: 0.75rem;
+  }
+
+  .chart-gallery {
+    /* Set stacking order */
+    position: relative;
+    z-index: 1;
+    transform: none !important;
+    /* Set grid layout */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
     justify-content: center;
     align-items: stretch;
     /* Dynamically account for header and nav height (56px each) */
     height: calc(100vh - 56px - 56px);
-    max-width: 100vw;
+    max-width: 98vw;
     overflow-y: auto; /* enable vertical scrolling */
     overflow-x: hidden;
-    margin: 0.5rem auto; /*remove if no scroll snapping*/
-    padding: 0rem 0.5rem; /*reset to 0.5rem if no scroll snapping*/
-
-    scroll-snap-type: y mandatory;
-    -webkit-overflow-scrolling: touch;
+    margin: 0 auto;
+    padding: 1rem 2vw;
   }
   .chart,
   .responsive-chart {
@@ -439,11 +753,226 @@ body {
   }
 }
 
-/* Tablet screens, portrait */
-/* @media (min-width: 700px) and (orientation: portrait) {
-} */
+/* ------------------------------------------------------------------------ */
+/* Tablet Screens: 2 x 2 Grid Layout */
+/* ------------------------------------------------------------------------ */
+@media (max-width: 1100px) and (min-width: 700px) and (min-height: 700px) {
+  /* Health Index Grid Layout */
+  .health-index {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      "index1 index1"
+      "index2 index3"
+      "table  table";
+    gap: 2rem;
+    width: 100%;
+    max-width: 98vw;
+    margin: 0 auto;
+    padding: 2rem 2vw 0rem 2vw;
+  }
+  .health-index > #index1-container {
+    grid-area: index1;
+  }
+  .health-index > #index2-container {
+    grid-area: index2;
+  }
+  .health-index > #index3-container {
+    grid-area: index3;
+  }
+  .health-index > #index4-container {
+    grid-area: table;
+  }
+  /* Responsive Table in index4-container */
+  #index4-container {
+    width: 100%;
+    max-width: 100vw;
+    min-height: calc(((100vh - 56px - 56px - 6rem) / 200vh) * 100vh);
+    max-height: calc(0.8 * 100vh); /*2 x2*/
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    /* Ensure no extra padding interferes */
+    padding: 2rem;
+    margin: 0 auto;
+  }
 
+  /* Ensure index1/2/3 containers fit chart, h3, and p */
+  #index1-container,
+  #index2-container,
+  #index3-container {
+    min-height: 200px;
+    max-height: calc(((100vh - 56px - 56px - 6rem) / 200vh) * 100vh);
+    padding-bottom: 3rem;
+    align-items: start;
+  }
+  #index1-container p,
+  #index2-container p,
+  #index3-container p {
+    font-size: 0.75rem;
+  }
+
+  /* Hide legend for <canvas id="index3"></canvas> only */
+  #index3-container .chartjs-legend {
+    display: none !important;
+  }
+
+  /* Grid.js wide table and sticky header/column */
+  .inventory-table-container {
+    width: 100%;
+    min-width: 50vw; /*set equal to @media query*/
+    max-width: 100vw;
+    overflow-x: auto;
+  }
+
+  .inventory-table-container .gridjs-container {
+    min-height: 60px;
+    max-height: 640px;
+    overflow-y: auto;
+  }
+
+  .inventory-table-container .gridjs-table {
+    width: 100%;
+    min-width: 3000px;
+    table-layout: fixed;
+  }
+  .inventory-table-container .gridjs-thead th {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 2;
+  }
+  .inventory-table-container .gridjs-th:first-child,
+  .inventory-table-container .gridjs-td:first-child {
+    position: sticky;
+    left: 0;
+    background: #fff;
+    z-index: 3;
+    box-shadow: 2px 0 2px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Set font size for pagination buttons (Previous / Next) and page buttons */
+  .inventory-table-container .gridjs-pagination .gridjs-pages button {
+    font-size: 1rem;
+  }
+
+  /* Chart Gallery  Grid Layout */
+  /* -- Tunable variables for tablet layout -- */
+  .chart-gallery {
+    --chart-gap: 2rem;
+    --chart-padding: 2rem;
+    --chart-min-row: 200px; /* minimum sensible chart height on tablet */
+
+    /* Updated: calculate the maximum chart height as
+       0.5 * (100vh - app header - main nav - chart padding).
+    */
+    --chart-max-viewport-ratio: calc((100vh - 56px - 56px - 6rem) / 200vh);
+  }
+
+  .chart-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(
+      var(--chart-min-row),
+      calc(var(--chart-max-viewport-ratio) * 100vh)
+    );
+    gap: var(--chart-gap);
+    width: 100%;
+    max-width: 98vw;
+    margin: 0 auto;
+    padding: var(--chart-padding) 2vw var(--chart-padding) 2vw;
+    grid-auto-flow: dense; /* helps fill gaps if items vary */
+  }
+
+  .chart-gallery {
+    grid-template-areas:
+      "chart1 chart2"
+      "chart3 chart4"
+      "chart5 chart6"
+      "chart7 chart8"
+      "chart9 chart10"
+      "chart11 chart12";
+  }
+
+  /* If you rely on nth-child mapping, keep these (kept for compatibility) */
+  .chart-gallery > .chart:nth-child(1) {
+    grid-area: chart1;
+  }
+  .chart-gallery > .chart:nth-child(2) {
+    grid-area: chart2;
+  }
+  .chart-gallery > .chart:nth-child(3) {
+    grid-area: chart3;
+  }
+  .chart-gallery > .chart:nth-child(4) {
+    grid-area: chart4;
+  }
+  .chart-gallery > .chart:nth-child(5) {
+    grid-area: chart5;
+  }
+  .chart-gallery > .chart:nth-child(6) {
+    grid-area: chart6;
+  }
+  .chart-gallery > .chart:nth-child(7) {
+    grid-area: chart7;
+  }
+  .chart-gallery > .chart:nth-child(8) {
+    grid-area: chart8;
+  }
+  .chart-gallery > .chart:nth-child(9) {
+    grid-area: chart9;
+  }
+  .chart-gallery > .chart:nth-child(10) {
+    grid-area: chart10;
+  }
+  .chart-gallery > .chart:nth-child(11) {
+    grid-area: chart11;
+  }
+  .chart-gallery > .chart:nth-child(12) {
+    grid-area: chart12;
+  }
+
+  .chart,
+  .responsive-chart {
+    min-width: 0;
+    min-height: 0; /* allow shrinking in flex/grid contexts */
+    height: 100%; /* fill the grid row height assigned by grid-auto-rows */
+    box-sizing: border-box;
+    padding: 0.5rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(36, 40, 47, 0.06);
+  }
+
+  .responsive-chart {
+    aspect-ratio: unset;
+    width: 100%;
+    max-width: 95vw;
+    min-height: var(--chart-min-row);
+    /* cap by viewport fraction and by available width for sensible scaling */
+    max-height: min(calc(var(--chart-max-viewport-ratio) * 100vh), 95vw);
+  }
+
+  .chart canvas,
+  .responsive-chart canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    margin: 0;
+    box-sizing: border-box;
+  }
+}
+/* ------------------------------------------------------------------------ */
 /* Large Screens: Magazine-style Desktop Grid Layout*/
+/* ------------------------------------------------------------------------ */
 @media (min-width: 1100px) {
   /* General Setting for All */
   .chart-gallery {
@@ -491,7 +1020,8 @@ body {
   #index4-container {
     width: 100%;
     max-width: 100vw;
-    max-height: calc(0.8 * 100vh);
+    min-height: 500px;
+    max-height: calc(0.75 * 100vh);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -506,7 +1036,7 @@ body {
   #index1-container,
   #index2-container,
   #index3-container {
-    min-height: 500px;
+    min-height: 200px;
     padding-bottom: 4rem;
   }
   #index1-container p,
@@ -523,7 +1053,7 @@ body {
   /* Grid.js wide table and sticky header/column */
   .inventory-table-container {
     width: 100%;
-    min-width: 1100px;
+    min-width: 1000px;
     max-width: 100vw;
     overflow-x: auto;
   }
@@ -552,6 +1082,11 @@ body {
     background: #fff;
     z-index: 3;
     box-shadow: 2px 0 2px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Set font size for pagination buttons (Previous / Next) and page buttons */
+  .inventory-table-container .gridjs-pagination .gridjs-pages button {
+    font-size: 1rem;
   }
 
   /*  Charts 1 to 12 
